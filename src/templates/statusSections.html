@@ -1,0 +1,53 @@
+<!-- Processing Status Section -->
+<div class="processing-status">
+    <h3>Статус обработки</h3>
+    <div class="status-item ${completedStages.topicDefined ? 'completed' : 'pending'}">
+        <span class="status-icon">${completedStages.topicDefined ? '✓' : '...'}</span>
+        Тема статьи определена
+    </div>
+    <div class="status-item ${completedStages.articleCreated ? 'completed' : 'pending'}">
+        <span class="status-icon">${completedStages.articleCreated ? '✓' : '...'}</span>
+        Статья создана
+    </div>
+    <div class="status-item ${completedStages.imagePromptCreated ? 'completed' : 'pending'}">
+        <span class="status-icon">${completedStages.imagePromptCreated ? '✓' : '...'}</span>
+        Составлен промпт для изображения
+    </div>
+    <div class="status-item ${completedStages.imageGenerated ? 'completed' : 'pending'}">
+        <span class="status-icon">${completedStages.imageGenerated ? '✓' : '...'}</span>
+        Изображение сгенерировано
+    </div>
+    <div class="status-item ${completedStages.articleReviewed ? 'completed' : 'pending'}">
+        <span class="status-icon">${completedStages.articleReviewed ? '✓' : '...'}</span>
+        Статья проверена цензором
+    </div>
+    <div class="status-item ${completedStages.pageCreated ? 'completed' : 'pending'}">
+        <span class="status-icon">${completedStages.pageCreated ? '✓' : '...'}</span>
+        HTML страница создана
+    </div>
+</div>
+
+<!-- Logs Section -->
+<div class="logs-section">
+    <h3>Логи работы агентов</h3>
+    <div class="agent-actions">
+        <h4>Действия агентов</h4>
+        ${logs.agentActions.map(action => `
+            <div class="log-entry">
+                <span class="agent">${action.agent}</span>
+                <span class="action">${action.action}</span>
+                <div class="details">${action.details}</div>
+            </div>
+        `).join('')}
+    </div>
+    <div class="interactions">
+        <h4>Взаимодействия</h4>
+        ${logs.interactions.map(interaction => `
+            <div class="interaction-entry">
+                <span class="from-agent">${interaction.fromAgent}</span> →
+                <span class="to-agent">${interaction.toAgent}</span>
+                <div class="message">${interaction.message}</div>
+            </div>
+        `).join('')}
+    </div>
+</div> 
